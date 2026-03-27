@@ -36,7 +36,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="w-full py-24 bg-[#f8f9fc] font-[Poppins]"
+      className="w-full py-24 bg-[#f8f9fc] font-[Poppins] scroll-mt-24"
       style={{ transform: "translateZ(0)" }} // 🔥 stabilizes rendering
     >
       <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">

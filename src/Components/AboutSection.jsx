@@ -4,7 +4,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="w-full bg-[#F8FAFC] py-20 px-6 sm:px-10 lg:px-20 font-[Poppins]"
+      className="w-full bg-[#F8FAFC] py-20 px-6 sm:px-10 lg:px-20 font-[Poppins] scroll-mt-24"
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* LEFT (TEXT) */}

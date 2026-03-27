@@ -8,27 +8,25 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", id: "home" },
-    { name: "Portfolio", id: "portfolio" },
-    { name: "Skills", id: "skills" },
-    { name: "Contact", id: "contact" },
     { name: "About", id: "about" },
+    { name: "Skills", id: "skills" },
+    { name: "Portfolio", id: "portfolio" },
+    { name: "Contact", id: "contact" },
   ];
 
-  const scrollToSection = (id) => {
+  const goToSection = (id) => {
     if (id === "home") {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
       setActiveSection("home");
-      setMenuOpen(false);
       return;
     }
 
     const el = document.getElementById(id);
     if (!el) return;
 
-    const navbarHeight = 80;
+    const navbar = document.querySelector("nav");
+    const navbarHeight = navbar ? navbar.offsetHeight : 72;
+
     const y =
       el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
 
@@ -38,7 +36,17 @@ export default function Navbar() {
     });
 
     setActiveSection(id);
-    setMenuOpen(false);
+  };
+
+  const scrollToSection = (id) => {
+    if (menuOpen) {
+      setMenuOpen(false);
+      setTimeout(() => {
+        goToSection(id);
+      }, 300);
+    } else {
+      goToSection(id);
+    }
   };
 
   useEffect(() => {
@@ -77,13 +85,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="flex items-center justify-between h-[72px]">
-          {/* LOGO */}
           <button
             onClick={() => scrollToSection("home")}
             className="text-[19px] font-semibold text-[#0F172A] cursor-pointer tracking-tight"
@@ -92,7 +99,6 @@ export default function Navbar() {
             <span className="text-teal-400 italic">Isaiah</span>
           </button>
 
-          {/* DESKTOP NAV */}
           <ul className="hidden md:flex items-center gap-10 text-[14.5px] text-gray-600">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -122,7 +128,6 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* CTA */}
           <button
             onClick={() => scrollToSection("contact")}
             className="hidden md:inline-flex cursor-pointer bg-teal-600 text-white px-5 py-2.5 rounded-full text-[14px] font-medium hover:bg-teal-700 transition"
@@ -130,7 +135,6 @@ export default function Navbar() {
             Hire Me
           </button>
 
-          {/* MOBILE ICON */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden cursor-pointer text-gray-800"
@@ -139,7 +143,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* MOBILE MENU */}
         <div
           className={`md:hidden transition-all duration-300 overflow-hidden ${
             menuOpen ? "max-h-96 pb-4" : "max-h-0"
@@ -163,7 +166,7 @@ export default function Navbar() {
                 </button>
               );
             })}
-            {/* Hire button */}
+
             <button
               onClick={() => scrollToSection("contact")}
               className="mt-2 bg-teal-600 text-white px-4 py-2.5 rounded-full text-sm cursor-pointer"
