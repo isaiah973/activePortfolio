@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="w-full min-h-screen flex items-center justify-center bg-[#f8f9fc] font-[Poppins] px-6"
+      className="relative w-full min-h-screen flex items-center justify-center bg-[#f8f9fc] font-[Poppins] px-6"
       style={{
         backfaceVisibility: "hidden",
         WebkitBackfaceVisibility: "hidden",
@@ -76,6 +76,31 @@ export default function Hero() {
           <span>Express.js</span>
         </motion.div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-gray-400 text-sm"
+      >
+        <span className="mb-2">Scroll Down</span>
+
+        {/* Arrow */}
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{
+            duration: 1.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="w-5 h-5 border-b-2 border-r-2 border-gray-400 rotate-45"
+        />
+      </motion.div>
     </section>
   );
 }

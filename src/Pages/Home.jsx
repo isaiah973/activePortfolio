@@ -10,6 +10,8 @@ import PortfolioSection from "../Components/PortfolioSection";
 // import MenuSection from "../Components/MenuSection";
 import Navbar from "../Components/Navbar";
 import Skills from "../Components/Skills";
+import ContactSection from "../Components/ContactSection";
+import AboutSection from "../Components/AboutSection";
 
 function Home() {
   useEffect(() => {
@@ -36,8 +38,11 @@ function Home() {
     <div>
       <Navbar />
       <Hero />
-      <Skills />
       <PortfolioSection />
+      <Skills />
+      <ContactSection />
+      <AboutSection />
+
       {/* <ServicesSection />
       <MenuSection />
       

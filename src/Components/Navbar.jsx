@@ -7,18 +7,30 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { name: "About", id: "about" },
+    { name: "Home", id: "home" },
+    { name: "Portfolio", id: "portfolio" },
     { name: "Skills", id: "skills" },
-    { name: "Projects", id: "portfolio" },
-    { name: "Experience", id: "experience" },
     { name: "Contact", id: "contact" },
+    { name: "About", id: "about" },
   ];
 
   const scrollToSection = (id) => {
+    if (id === "home") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setActiveSection("home");
+      setMenuOpen(false);
+      return;
+    }
+
     const el = document.getElementById(id);
     if (!el) return;
 
-    const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+    const navbarHeight = 80;
+    const y =
+      el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
 
     window.scrollTo({
       top: y,
@@ -33,9 +45,17 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
 
-      const scrollPosition = window.scrollY + 120;
+      if (window.scrollY < 120) {
+        setActiveSection("home");
+        return;
+      }
+
+      const scrollPosition = window.scrollY + 140;
+      let currentSection = "home";
 
       navLinks.forEach((link) => {
+        if (link.id === "home") return;
+
         const section = document.getElementById(link.id);
         if (!section) return;
 
@@ -43,28 +63,34 @@ export default function Navbar() {
           scrollPosition >= section.offsetTop &&
           scrollPosition < section.offsetTop + section.offsetHeight
         ) {
-          setActiveSection(link.id);
+          currentSection = link.id;
         }
       });
+
+      setActiveSection(currentSection);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-sm" : "bg-white"
+      className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
       }`}
-      style={{ transform: "translateZ(0)", willChange: "transform" }} // 🔥 prevents flicker
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="flex items-center justify-between h-[72px]">
           {/* LOGO */}
-          <h1 className="text-[18px] font-semibold text-teal-700 cursor-pointer tracking-tight">
-            Adeola Isaiah
-          </h1>
+          <button
+            onClick={() => scrollToSection("home")}
+            className="text-[19px] font-semibold text-[#0F172A] cursor-pointer tracking-tight"
+          >
+            Adeola
+            <span className="text-teal-400 italic">Isaiah</span>
+          </button>
 
           {/* DESKTOP NAV */}
           <ul className="hidden md:flex items-center gap-10 text-[14.5px] text-gray-600">
@@ -76,13 +102,14 @@ export default function Navbar() {
                   <button
                     onClick={() => scrollToSection(link.id)}
                     className={`cursor-pointer transition-colors duration-300 ${
-                      isActive ? "text-teal-600" : "hover:text-gray-900"
+                      isActive
+                        ? "text-teal-600 font-medium"
+                        : "hover:text-gray-900"
                     }`}
                   >
                     {link.name}
                   </button>
 
-                  {/* underline */}
                   <span
                     className={`absolute left-0 -bottom-1 h-[2px] rounded-full bg-teal-600 transition-all duration-300 ${
                       isActive
@@ -119,15 +146,23 @@ export default function Navbar() {
           }`}
         >
           <div className="mt-2 rounded-2xl bg-white shadow-md p-5 flex flex-col gap-5">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.id)}
-                className="text-left text-gray-700 hover:text-teal-600 transition cursor-pointer"
-              >
-                {link.name}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+
+              return (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`text-left transition cursor-pointer ${
+                    isActive
+                      ? "text-teal-600 font-medium"
+                      : "text-gray-700 hover:text-teal-600"
+                  }`}
+                >
+                  {link.name}
+                </button>
+              );
+            })}
 
             <button
               onClick={() => scrollToSection("contact")}
