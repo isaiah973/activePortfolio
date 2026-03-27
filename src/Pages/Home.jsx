@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import Lenis from "lenis";
 import Hero from "../Components/Hero";
-import ServicesSection from "../Components/ServicesSection";
+// import ServicesSection from "../Components/ServicesSection";
 import PortfolioSection from "../Components/PortfolioSection";
-import AboutSection from "../Components/AboutSection";
-import ContactSection from "../Components/ContactSection";
-import FloatingSocials from "../Components/FloatingSocials";
-import Footer from "../Components/Footer";
-import MenuSection from "../Components/MenuSection";
+// import AboutSection from "../Components/AboutSection";
+// import ContactSection from "../Components/ContactSection";
+// import FloatingSocials from "../Components/FloatingSocials";
+// import Footer from "../Components/Footer";
+// import MenuSection from "../Components/MenuSection";
 import Navbar from "../Components/Navbar";
+import Skills from "../Components/Skills";
 
 function Home() {
   useEffect(() => {
@@ -35,13 +36,15 @@ function Home() {
     <div>
       <Navbar />
       <Hero />
-      <ServicesSection />
-      <MenuSection />
+      <Skills />
       <PortfolioSection />
+      {/* <ServicesSection />
+      <MenuSection />
+      
       <AboutSection />
       <ContactSection />
       <FloatingSocials />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }

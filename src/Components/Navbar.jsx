@@ -48,7 +48,6 @@ export default function Navbar() {
       });
     };
 
-    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -56,37 +55,36 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/70 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.05)]"
-          : "bg-transparent"
+        isScrolled ? "bg-white shadow-sm" : "bg-white"
       }`}
+      style={{ transform: "translateZ(0)", willChange: "transform" }} // 🔥 prevents flicker
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="flex items-center justify-between h-[72px]">
           {/* LOGO */}
-          <h1 className="text-[18px] font-semibold text-teal-900 cursor-pointer tracking-tight">
+          <h1 className="text-[18px] font-semibold text-teal-700 cursor-pointer tracking-tight">
             Adeola Isaiah
           </h1>
 
           {/* DESKTOP NAV */}
-          <ul className="hidden md:flex items-center gap-10 text-[14.5px] text-gray-600 font-normal">
+          <ul className="hidden md:flex items-center gap-10 text-[14.5px] text-gray-600">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
 
               return (
-                <li key={link.name} className="relative">
+                <li key={link.name} className="relative group">
                   <button
                     onClick={() => scrollToSection(link.id)}
-                    className={`cursor-pointer transition-all duration-300 ${
-                      isActive ? "text-purple-600" : "hover:text-gray-900"
+                    className={`cursor-pointer transition-colors duration-300 ${
+                      isActive ? "text-teal-600" : "hover:text-gray-900"
                     }`}
                   >
                     {link.name}
                   </button>
 
-                  {/* underline (hover + active) */}
+                  {/* underline */}
                   <span
-                    className={`absolute left-0 -bottom-1 h-[2px] rounded-full bg-purple-600 transition-all duration-300 ${
+                    className={`absolute left-0 -bottom-1 h-[2px] rounded-full bg-teal-600 transition-all duration-300 ${
                       isActive
                         ? "w-full opacity-100"
                         : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
@@ -100,7 +98,7 @@ export default function Navbar() {
           {/* CTA */}
           <button
             onClick={() => scrollToSection("contact")}
-            className="hidden md:inline-flex cursor-pointer bg-teal-600 text-white px-5 py-2.5 rounded-full text-[14px] font-medium shadow-sm hover:bg-teal-700 transition-all duration-300"
+            className="hidden md:inline-flex cursor-pointer bg-teal-600 text-white px-5 py-2.5 rounded-full text-[14px] font-medium hover:bg-teal-700 transition"
           >
             Hire Me
           </button>
@@ -120,12 +118,12 @@ export default function Navbar() {
             menuOpen ? "max-h-96 pb-4" : "max-h-0"
           }`}
         >
-          <div className="mt-2 rounded-2xl bg-white shadow-lg p-5 flex flex-col gap-5">
+          <div className="mt-2 rounded-2xl bg-white shadow-md p-5 flex flex-col gap-5">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.id)}
-                className="text-left text-gray-700 hover:text-purple-600 transition cursor-pointer"
+                className="text-left text-gray-700 hover:text-teal-600 transition cursor-pointer"
               >
                 {link.name}
               </button>
@@ -133,7 +131,7 @@ export default function Navbar() {
 
             <button
               onClick={() => scrollToSection("contact")}
-              className="mt-2 bg-purple-600 text-white px-4 py-2.5 rounded-full text-sm cursor-pointer"
+              className="mt-2 bg-teal-600 text-white px-4 py-2.5 rounded-full text-sm cursor-pointer"
             >
               Hire Me
             </button>

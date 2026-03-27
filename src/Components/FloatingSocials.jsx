@@ -5,7 +5,7 @@ export default function FloatingSocials() {
   return (
     <div className="fixed right-4 bottom-5 sm:right-6 sm:bottom-6 z-[999] flex flex-col gap-3">
       <motion.a
-        href="https://wa.me/447415260053"
+        href="https://wa.me/+2348089386770"
         target="_blank"
         rel="noreferrer"
         aria-label="Chat on WhatsApp"
@@ -19,7 +19,7 @@ export default function FloatingSocials() {
         <FaWhatsapp size={28} />
       </motion.a>
 
-      <motion.a
+      {/* <motion.a
         href="https://instagram.com/valecanapesuk_"
         target="_blank"
         rel="noreferrer"
@@ -32,7 +32,7 @@ export default function FloatingSocials() {
         className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#E1306C] border border-[#eadfd3] shadow-[0_14px_30px_rgba(0,0,0,0.14)]"
       >
         <FaInstagram size={26} />
-      </motion.a>
+      </motion.a> */}
     </div>
   );
 }

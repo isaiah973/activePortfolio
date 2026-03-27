@@ -14,3 +14,18 @@ html {
 body {
   font-family: "Inter", sans-serif;
 }
+/* Kill flickering globally */
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Stabilize rendering */
+body {
+  transform: translateZ(0);
+}
+
+/* Prevent layout repaint jumps */
+html {
+  scroll-behavior: smooth;
+}
