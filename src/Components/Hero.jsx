@@ -83,7 +83,7 @@ export default function Hero() {
         >
           <a
             href="#portfolio"
-            className="group inline-flex items-center gap-3 rounded-full border border-gray-100 bg-white/80 px-5 py-3 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-teal-500 hover:text-teal-600 hover:shadow-md"
+            className="group inline-flex items-center gap-3  bg-white/80 px-5 text-sm font-medium text-gray-700 backdrop-blur-sm transition-all duration-300 hover:border-teal-500 hover:text-teal-600 hover:shadow-md"
           >
             <span className="text-gray-300">Scroll Down</span>
             <span className="transition-transform duration-300 group-hover:translate-y-1">
