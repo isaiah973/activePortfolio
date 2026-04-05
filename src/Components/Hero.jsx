@@ -3,15 +3,13 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section
-      id="home"
-      className="relative w-full min-h-screen flex items-center justify-center bg-[#f8f9fc] font-[Poppins] px-6"
+      className="w-full min-h-screen pt-[72px] flex items-center justify-center bg-[#f8f9fc] font-[Poppins] px-6"
       style={{
         backfaceVisibility: "hidden",
         WebkitBackfaceVisibility: "hidden",
       }}
     >
       <div className="max-w-3xl text-center">
-        {/* NO Y-AXIS TRANSFORM ANYMORE */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -50,7 +48,7 @@ export default function Hero() {
           className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#projects"
+            href="#portfolio"
             className="bg-teal-600 text-white px-6 py-3 rounded-lg text-sm font-medium shadow-sm hover:bg-teal-700 transition"
           >
             View My Work →
@@ -75,32 +73,25 @@ export default function Hero() {
           <span>MongoDB</span>
           <span>Express.js</span>
         </motion.div>
-      </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-gray-400 text-sm"
-      >
-        <span className="mb-2">Scroll Down</span>
-
-        {/* Arrow */}
+        {/* SCROLL BUTTON */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{
-            duration: 1.2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="w-5 h-5 border-b-2 border-r-2 border-gray-400 rotate-45"
-        />
-      </motion.div>
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mt-8 flex justify-center"
+        >
+          <a
+            href="#portfolio"
+            className="group inline-flex items-center gap-3 rounded-full border border-gray-100 bg-white/80 px-5 py-3 text-sm font-medium text-gray-700 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-teal-500 hover:text-teal-600 hover:shadow-md"
+          >
+            <span className="text-gray-300">Scroll Down</span>
+            <span className="transition-transform duration-300 group-hover:translate-y-1">
+              ↓
+            </span>
+          </a>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -24,8 +24,11 @@ body {
 body {
   transform: translateZ(0);
 }
-
-/* Prevent layout repaint jumps */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
+/* Prevent layout repaint jumps */
+/* html {
+  scroll-behavior: smooth;
+} */

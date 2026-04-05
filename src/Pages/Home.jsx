@@ -1,57 +1,39 @@
-import React, { useEffect } from "react";
-import Lenis from "lenis";
-import Hero from "../Components/Hero";
-// import ServicesSection from "../Components/ServicesSection";
-import PortfolioSection from "../Components/PortfolioSection";
-// import AboutSection from "../Components/AboutSection";
-// import ContactSection from "../Components/ContactSection";
-// import FloatingSocials from "../Components/FloatingSocials";
-// import Footer from "../Components/Footer";
-// import MenuSection from "../Components/MenuSection";
 import Navbar from "../Components/Navbar";
-import Skills from "../Components/Skills";
-import ContactSection from "../Components/ContactSection";
+import Hero from "../Components/Hero";
 import AboutSection from "../Components/AboutSection";
+import Skills from "../Components/Skills";
+import PortfolioSection from "../Components/PortfolioSection";
+import ContactSection from "../Components/ContactSection";
+import Footer from "../Components/Footer";
 
-function Home() {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      smoothWheel: true,
-      smoothTouch: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    const rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
-  }, []);
-
+export default function Home() {
   return (
-    <div>
+    <>
       <Navbar />
-      <Hero />
-      <PortfolioSection />
-      <Skills />
-      <ContactSection />
-      <AboutSection />
 
-      {/* <ServicesSection />
-      <MenuSection />
-      
-      <AboutSection />
-      <ContactSection />
-      <FloatingSocials />
-      <Footer /> */}
-    </div>
+      <section id="home">
+        <Hero />
+      </section>
+
+      <section id="portfolio">
+        <PortfolioSection />
+      </section>
+
+      <section id="skills">
+        <Skills />
+      </section>
+
+      <section id="contact">
+        <ContactSection />
+      </section>
+
+      <section id="about">
+        <AboutSection />
+      </section>
+
+      <section id="about">
+        <Footer />
+      </section>
+    </>
   );
 }
-
-export default Home;

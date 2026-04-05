@@ -36,10 +36,7 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section
-      id="portfolio"
-      className="w-full bg-[#F5F5F7] py-20 px-6 sm:px-10 lg:px-20 font-san scroll-mt-24"
-    >
+    <section className="w-full bg-[#F5F5F7] py-20 px-6 sm:px-10 lg:px-20 font-sans">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
