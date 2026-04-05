@@ -63,7 +63,7 @@ export default function Footer() {
           <h3 className="text-white font-medium mb-4">Contact</h3>
           <ul className="space-y-3 text-sm">
             <li>Email: adeolaisaiah01@gmail.com</li>
-            <li>Phone: +234 8089386770</li>
+            <li>Phone: +2348089386770</li>
             <li>Ibadan, Nigeria</li>
           </ul>
         </div>
