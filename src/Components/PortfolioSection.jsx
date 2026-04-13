@@ -11,7 +11,7 @@ export default function PortfolioSection() {
       description:
         "A modern e-commerce platform built with a responsive frontend and backend functionality for product management, authentication, and user interaction.",
       techStack: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
-      liveLink: "https://your-project-link.com",
+      liveLink: "https://fullstack-frontend-zeta-five.vercel.app/",
     },
     {
       id: 2,
