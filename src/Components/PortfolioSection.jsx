@@ -5,14 +5,15 @@ export default function PortfolioSection() {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Store",
-      category: "Full-Stack Web Application",
-      image: "/images/storemart.png",
+      title: "Voting & Ranking Platform",
+      category: "Interactive Frontend Project",
+      image: "/images/teswa.png",
       description:
-        "A modern e-commerce platform built with a responsive frontend and backend functionality for product management, authentication, and user interaction.",
-      techStack: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
-      liveLink: "https://storemart.vercel.app",
+        "An interactive voting and ranking interface designed for smooth user engagement, intuitive navigation, and a polished modern layout.",
+      techStack: ["React", "JavaScript", "Tailwind CSS"],
+      liveLink: "https://teswacompetition.vercel.app",
     },
+
     {
       id: 2,
       title: "Personal Chef Portfolio",
@@ -25,13 +26,24 @@ export default function PortfolioSection() {
     },
     {
       id: 3,
-      title: "Voting & Ranking Platform",
-      category: "Interactive Frontend Project",
-      image: "/images/teswa.png",
+      title: "Donation Platform",
+      category: "Full-Stack Web Application",
+      image: "/images/needful.png",
       description:
-        "An interactive voting and ranking interface designed for smooth user engagement, intuitive navigation, and a polished modern layout.",
-      techStack: ["React", "JavaScript", "Tailwind CSS"],
-      liveLink: "https://teswacompetition.vercel.app",
+        "A modern donation platform built with a responsive frontend and backend functionality for user management, authentication, and seamless donation processes.",
+      techStack: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
+      liveLink: "https://needfulng.com",
+    },
+
+    {
+      id: 4,
+      title: "E-Commerce Store",
+      category: "Full-Stack Web Application",
+      image: "/images/storemart.png",
+      description:
+        "A modern e-commerce platform built with a responsive frontend and backend functionality for product management, authentication, and user interaction.",
+      techStack: ["React", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
+      liveLink: "https://storemart.vercel.app",
     },
   ];
 
