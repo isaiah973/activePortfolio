@@ -15,6 +15,10 @@ export default function Home() {
         <Hero />
       </section>
 
+      <section id="about">
+        <AboutSection />
+      </section>
+
       <section id="portfolio">
         <PortfolioSection />
       </section>
@@ -27,13 +31,7 @@ export default function Home() {
         <ContactSection />
       </section>
 
-      <section id="about">
-        <AboutSection />
-      </section>
-
-      <section id="about">
-        <Footer />
-      </section>
+      <Footer />
     </>
   );
 }

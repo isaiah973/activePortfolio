@@ -1,163 +1,63 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+
+const navLinks = [
+  { name: "About", id: "about" },
+  { name: "Work", id: "portfolio" },
+  { name: "Expertise", id: "skills" },
+  { name: "Contact", id: "contact" },
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const navLinks = [
-    { name: "Home", id: "home" },
-    { name: "Portfolio", id: "portfolio" },
-    { name: "Skills", id: "skills" },
-    { name: "Contact", id: "contact" },
-    { name: "About", id: "about" },
-  ];
-
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-      if (window.scrollY < 120) {
-        setActiveSection("home");
-      }
-    };
-
-    const sectionIds = navLinks.map((link) => link.id);
-    const sections = sectionIds
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const sections = ["home", ...navLinks.map(({ id }) => id)]
       .map((id) => document.getElementById(id))
       .filter(Boolean);
-
     const observer = new IntersectionObserver(
       (entries) => {
-        if (window.scrollY < 120) {
-          setActiveSection("home");
-          return;
-        }
-
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-        if (visible.length > 0) {
-          setActiveSection(visible[0].target.id);
-        }
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length) setActiveSection(visible[0].target.id);
       },
-      {
-        root: null,
-        rootMargin: "-88px 0px -55% 0px",
-        threshold: 0.15,
-      },
+      { rootMargin: "-25% 0px -65% 0px" },
     );
-
     sections.forEach((section) => observer.observe(section));
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => { observer.disconnect(); window.removeEventListener("scroll", handleScroll); };
   }, []);
 
-  const closeMobileMenu = () => {
-    setMenuOpen(false);
-  };
-
   return (
-    <nav
-      className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="flex items-center justify-between h-[72px]">
-          <a
-            href="#home"
-            onClick={closeMobileMenu}
-            className="text-[19px] font-semibold text-[#0F172A] tracking-tight"
-          >
-            Adeola
-            <span className="text-teal-400 italic">Isaiah</span>
-          </a>
+    <nav aria-label="Main navigation" className={`sticky top-0 z-50 border-b transition-all duration-300 ${isScrolled ? "border-slate-200 bg-white/90 backdrop-blur-xl" : "border-transparent bg-[#f7f8fa]"}`}>
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        <a href="#home" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 font-bold tracking-[-0.03em] text-slate-950">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-slate-950 text-sm text-white">AI</span>
+          <span>Adeola Isaiah</span>
+        </a>
 
-          <ul className="hidden md:flex items-center gap-10 text-[14.5px] text-gray-600">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-
-              return (
-                <li key={link.id} className="relative group">
-                  <a
-                    href={`#${link.id}`}
-                    className={`transition-colors duration-300 ${
-                      isActive
-                        ? "text-teal-600 font-medium"
-                        : "hover:text-gray-900"
-                    }`}
-                  >
-                    {link.name}
-                  </a>
-
-                  <span
-                    className={`absolute left-0 -bottom-1 h-[2px] rounded-full bg-teal-600 transition-all duration-300 ${
-                      isActive
-                        ? "w-full opacity-100"
-                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-                    }`}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-
-          <a
-            href="#contact"
-            className="hidden md:inline-flex bg-teal-600 text-white px-5 py-2.5 rounded-full text-[14px] font-medium hover:bg-teal-700 transition"
-          >
-            Hire Me
-          </a>
-
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden text-gray-800"
-          >
-            {menuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
+        <div className="hidden items-center gap-9 md:flex">
+          {navLinks.map((link) => (
+            <a key={link.id} href={`#${link.id}`} className={`relative py-2 text-sm font-semibold transition ${activeSection === link.id ? "text-teal-600" : "text-slate-500 hover:text-slate-950"}`}>
+              {link.name}
+              {activeSection === link.id && <span className="absolute inset-x-0 -bottom-[21px] h-0.5 bg-teal-500" />}
+            </a>
+          ))}
         </div>
 
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
-            menuOpen ? "max-h-96 pb-4" : "max-h-0"
-          }`}
-        >
-          <div className="mt-2 rounded-2xl bg-white shadow-md p-5 flex flex-col gap-5">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+        <a href="mailto:adeolaisaiah01@gmail.com" className="group hidden items-center gap-2 rounded-full bg-slate-950 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-teal-600 md:inline-flex">Start a project <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></a>
+        <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)} className="grid h-10 w-10 place-items-center rounded-full border border-slate-300 text-slate-900 md:hidden">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
+      </div>
 
-              return (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={closeMobileMenu}
-                  className={`text-left transition ${
-                    isActive
-                      ? "text-teal-600 font-medium"
-                      : "text-gray-700 hover:text-teal-600"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
-
-            <a
-              href="#contact"
-              onClick={closeMobileMenu}
-              className="mt-2 bg-teal-600 text-white px-4 py-2.5 rounded-full text-sm text-center"
-            >
-              Hire Me
-            </a>
-          </div>
+      <div className={`overflow-hidden border-slate-200 bg-white transition-all duration-300 md:hidden ${menuOpen ? "max-h-96 border-t" : "max-h-0"}`}>
+        <div className="space-y-1 px-5 py-5 sm:px-8">
+          {navLinks.map((link, index) => (
+            <a key={link.id} href={`#${link.id}`} onClick={() => setMenuOpen(false)} className="flex items-center justify-between border-b border-slate-100 py-4 text-xl font-semibold text-slate-950"><span>{link.name}</span><span className="text-xs text-slate-400">0{index + 1}</span></a>
+          ))}
+          <a href="mailto:adeolaisaiah01@gmail.com" className="mt-4 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white">Start a project <ArrowUpRight size={16} /></a>
         </div>
       </div>
     </nav>

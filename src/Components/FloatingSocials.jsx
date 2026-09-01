@@ -1,10 +1,10 @@
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 export default function FloatingSocials() {
   return (
     <div className="fixed right-4 bottom-5 sm:right-6 sm:bottom-6 z-[999] flex flex-col gap-3">
-      <motion.a
+      <Motion.a
         href="https://wa.me/+2348089386770"
         target="_blank"
         rel="noreferrer"
@@ -17,7 +17,7 @@ export default function FloatingSocials() {
         className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_14px_30px_rgba(0,0,0,0.18)]"
       >
         <FaWhatsapp size={28} />
-      </motion.a>
+      </Motion.a>
 
       {/* <motion.a
         href="https://instagram.com/valecanapesuk_"

@@ -6,13 +6,20 @@
   --color-lightText: #5f5f5f;
   --color-bg: #f8f6f2;
 
-  --font-poppins: "Poppins", sans-serif;
+  --font-poppins: "Manrope", sans-serif;
+  --font-sans: "Manrope", sans-serif;
 }
 html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Inter", sans-serif;
+  margin: 0;
+  min-width: 320px;
+  background: #f7f8fa;
+  color: #0f172a;
+  font-family: "Manrope", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 /* Kill flickering globally */
 * {
@@ -28,7 +35,22 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
 }
-/* Prevent layout repaint jumps */
-/* html {
-  scroll-behavior: smooth;
-} */
+::selection {
+  background: #2dd4bf;
+  color: #0f172a;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
